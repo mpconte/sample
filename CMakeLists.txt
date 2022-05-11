@@ -30,16 +30,6 @@ include_directories(${Python3_Numpy_INCLUDE_DIRS})
 # Find pthread
 find_library(PTHREAD_LIBRARIES pthread)
 
-# Setup linking shared libs for Windows build
-if (WIN32 OR MSVC)
-	set(Boost_NO_SYSTEM_PATHS true)
-	set(Boost_USE_STATIC_LIBS OFF CACHE BOOL "use static libraries from Boost")
-	set(Boost_USE_MULTITHREADED ON)
-
-	add_definitions(-DBOOST_ALL_NO_LIB)
-	add_definitions(-DBOOST_ALL_DYN_LINK)
-    add_definitions(-D_WIN32_WINNT=0x0A00)
-endif(WIN32 OR MSVC)
 
 # we need to tell the linker to use the sysroot (although the compiler does this automatically).
 if (CMAKE_SYSROOT)
